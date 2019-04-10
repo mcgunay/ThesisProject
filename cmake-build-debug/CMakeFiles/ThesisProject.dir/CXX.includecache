@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/mcangny/CLionProjects/ThesisProject/logging.h
+
+/Users/mcangny/CLionProjects/ThesisProject/main.cpp
+iostream
+-
+monsel.h
+/Users/mcangny/CLionProjects/ThesisProject/monsel.h
+logging.h
+/Users/mcangny/CLionProjects/ThesisProject/logging.h
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+stdbool.h
+-
+argp.h
+-
+time.h
+-
+
+/Users/mcangny/CLionProjects/ThesisProject/monsel.h
+stdint.h
+-
+
+/usr/local/include/argp.h
+stdio.h
+-
+ctype.h
+-
+errno.h
+-
+
