@@ -477,16 +477,16 @@ void create_null_individual(Individual *ind, int size)
 /*
  * Creates an initialized individual with random values of size 'size' and a fitness of -1 (unititialized).
  */
-void create_random_individual(Individual *ind, int size)
+void create_random_individual(Individual& ind, int size)
 {
-    ind->values = new Gene[size];
+    ind.values = new Gene[size];
     for(int i=0; i<size; i++)
     {
-        ind->values[i] = rand() % 2;
+        ind.values[i] = rand() % 2;
     }
-    ind->size = size;
-    ind->fitness = -1;
-    ind->obj = new double[nobj];
+    ind.size = size;
+    ind.fitness = -1;
+    ind.obj = new double[nobj];
 }
 
 /*
@@ -1840,20 +1840,20 @@ Fitness run_default(struct ea_parameters* params)
     }
     variables_param_to_global(params);
     nbits[0] = model.vcount; //TODO check if this is true
-    FitnessWrite *fitvals = calloc(sizeof(FitnessWrite) , params->max_evals);
+    FitnessWrite *fitvals = new FitnessWrite[params->max_evals];
     GenerationData* gendata = NULL;
     long gendatacount = 0;
     if(params->genfname)
-        gendata = calloc(sizeof(GenerationData) , params->max_evals);
+        gendata = new GenerationData[params->max_evals];
     Population pop;
     pop._memsize = params->popsize + params->popsize + params->pi_size + 1;
     pop.size = 0;
-    pop.ind = malloc(sizeof(Individual) * pop._memsize);
+    pop.ind = new Individual[pop._memsize];
     time_t run_start_time = time(NULL);
     for(int i=0; i<params->popsize; i++)
     {
         Individual ind;
-        create_random_individual(&ind, model.vcount);
+        create_random_individual(ind, model.vcount);
         pop.ind[pop.size++] = ind;
     }
     for(int i=0; i<params->popsize; i++)
@@ -1876,7 +1876,7 @@ Fitness run_default(struct ea_parameters* params)
     if(params->do_pi)
     {
         diversity._memsize = params->pi_width;
-        diversity.values = malloc(sizeof(Fitness) * diversity._memsize);
+        diversity.values = new Fitness[diversity._memsize];
         for(int k=0; k<diversity._memsize; k++)
             diversity.values[k] = 0;
         diversity.next = 0;

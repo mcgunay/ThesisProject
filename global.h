@@ -85,7 +85,7 @@ typedef struct Population {
 } Population;
 
 typedef struct Diversity {
-    double *values;
+    long *values;
     long next;
     long _memsize;
 } Diversity;
